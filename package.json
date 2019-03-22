@@ -1,0 +1,24 @@
+{
+  "name": "simple-program",
+  "version": "1.0.0",
+  "description": "Andela Simple Program",
+  "main": "app.js",
+  "scripts": {
+    "test": "istanbul cover node_modules/jasmine/bin/jasmine.js"
+  },
+  "author": "Esther Ndosi",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "express-session": "^1.15.6",
+    "jasmine-node": "^1.16.2",
+    "mysql": "^2.16.0",
+    "req-flash": "0.0.3",
+    "request": "^2.88.0"
+  },
+  "devDependencies": {
+    "jasmine": "^3.3.1"
+  }
+}

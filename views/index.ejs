@@ -1,0 +1,46 @@
+<% include header.ejs %>
+    <div class="text-center">
+        <h1 class="text-center">Welcome to Our App</h1>
+		<% if (loggedIn) { %>
+			<p>Logged in as <%= role %> </p>
+			<% if (comments.length > 0) {%>
+				<% comments.forEach((comment, index) => { %>
+					<% if(!comment.parentId) { %>
+						<div class="border">
+							<p>Author: <%= comment.firstName + ' ' + comment.lastName %></p>
+							<p>Posted On: <%= comment.postedTime.toUTCString() %></p>
+							<p>Comment: <%= comment.description %></p>
+							<p><a href="/replycomment/<%= comment.commentId %>">Reply</a>
+								<% if(userId == comment.author || role == 'admin'){ %>
+									<a href="/editcomment/<%= comment.commentId %>">Edit</a>
+								<% } %>
+								<% if (role == 'admin' || role == 'moderator'){ %>
+									<a href="/deletecomment/<%= comment.commentId %>">Delete</a></p>
+								<% } %>
+							<h5>Replies</h5>
+							<% replies.forEach((reply, index) => { %>
+								<% if(reply.parentId == comment.commentId){ %>
+									<p>Author: <%= reply.firstName + ' ' + reply.lastName %></p>
+									<p>Posted On: <%= reply.postedTime.toUTCString() %></p>
+									<p>Comment: <%= reply.description %></p>
+									<% if(userId == reply.author || role == 'admin'){ %>
+										<a href="/editcomment/<%= reply.commentId %>">Edit</a>
+									<% } %>
+									<% if (role == 'admin' || role == 'moderator'){ %>
+										<a href="/deletecomment/<%= reply.commentId %>">Delete</a></p>
+									<% } %>
+								<% } %>
+							<% }) %>
+						</div>
+					<% } %>
+				<% }) %>
+			<% } else { %>
+				<p class="text-center">No comments found. Go <a href="/addcomment" >here</a> to add comments.</p>
+			<% } %>
+		<% } else {%>
+			<p class="text-center">Please login and continue!!</p>
+		<% } %>
+    </div>
+</div>
+</body>
+</html>
