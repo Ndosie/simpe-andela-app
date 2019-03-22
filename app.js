@@ -58,6 +58,4 @@ app.get('/deletecomment/:id', deleteComment);
 app.get('/replycomment/:parentid', replyCommentPage);
 
 
-app.listen(port, () => {
-    console.log(`Server running on port: ${port}`);
-});
+app.listen(process.env.PORT || 3000);
